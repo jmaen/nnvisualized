@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>A Neural Network Visualized</title>
+        <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+        <link rel="icon" sizes="any" href="icons/favicon.ico">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,500,700">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+    <body onload="init()">
+        <header>
+            <h1>A <span class="bold">Neural Network</span> Visualized</h1>
+        </header>
+        <main>
+            <div class="configuration">
+                <div class="configuration-column configuration-left">
+                    <h2 class="center">Network Shape</h2>
+                    <div class="item-columns">
+                        <div class="item-column">
+                            <p class="item-label">Input Neurons</p>
+                            <div class="number-input">
+                                <svg class="item-icon number-input-icon left" onclick="config.changeShape(0, -1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Remove input neuron</title><path d="M19 13H5v-2h14v2z"/></svg>
+                                <p id="number-input-0" class="number-input-digit"></p>
+                                <svg class="item-icon number-input-icon right" onclick="config.changeShape(0, 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Add input neuron</title><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            </div>
+                        </div>
+                        <div class="item-column">
+                            <p class="item-label">Hidden Neurons</p>
+                            <div class="number-input">
+                                <svg class="item-icon number-input-icon left" onclick="config.changeShape(1, -1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Remove hidden neuron</title><path d="M19 13H5v-2h14v2z"/></svg>
+                                <p id="number-input-1" class="number-input-digit"></p>
+                                <svg class="item-icon number-input-icon right" onclick="config.changeShape(1, 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Add hidden neuron</title><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            </div>
+                        </div>
+                        <div class="item-column">
+                            <p class="item-label">Output Neurons</p>
+                            <div class="number-input">
+                                <svg class="item-icon number-input-icon left" onclick="config.changeShape(2, -1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Remove output neuron</title><path d="M19 13H5v-2h14v2z"/></svg>
+                                <p id="number-input-2" class="number-input-digit"></p>
+                                <svg class="item-icon number-input-icon right" onclick="config.changeShape(2, 1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Add output neuron</title><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="configuration-right">
+                    <div class="configuration-column">
+                        <h2>Activation Functions</h2>
+                        <div class="item-columns">
+                            <div class="item-column">
+                                <p class="item-label">Hidden Layer</p>
+                                <div class="select-box">
+                                    <select class="activation-select" onchange="config.changeActivation('hidden', this.value)">
+                                        <option value="0">Linear</option>
+                                        <option value="1">Sigmoid</option>
+                                        <option value="2" selected>TanH</option>
+                                        <option value="3">ReLU</option>
+                                    </select>
+                                    <svg class="item-icon select-icon right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
+                                </div>
+                            </div>
+                            <div class="item-column">
+                                <p class="item-label">Output Layer</p>
+                                <div class="select-box">
+                                    <select class="activation-select" onchange="config.changeActivation('output', this.value)">
+                                        <option value="0">Linear</option>
+                                        <option value="1" selected>Sigmoid</option>
+                                        <option value="2">TanH</option>
+                                        <option value="3">ReLU</option>
+                                    </select>
+                                    <svg class="item-icon select-icon right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="configuration-column">
+                        <h2>Learning Settings</h2>
+                        <div class="item-columns">
+                            <div class="item-column">
+                                <p class="item-label">Learning Rate</p>
+                                <div class="select-box">
+                                    <select onchange="config.changeLearningRate(this.value)">
+                                        <option>0.001</option>
+                                        <option>0.003</option>
+                                        <option selected>0.01</option>
+                                        <option>0.03</option>
+                                        <option>0.1</option>
+                                        <option>0.3</option>
+                                        <option>1</option>
+                                    </select>
+                                    <svg class="item-icon select-icon right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
+                                </div>
+                            </div>
+                            <div class="item-column">
+                                <p class="item-label">Current Epoch</p>
+                                <div class="label-box">
+                                    <p id="epoch-label"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="visualization">
+                <div class="column">
+                    <div class="table-column">
+                        <h2 class="center">Training Data</h2>
+                        <table id="data-table"></table>
+                        <div class="table-buttons">
+                            <button id="add-button" class="table-button round" title="Add data row" onclick="dataTable.addRow()"><svg class="table-button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>
+                            <button id="remove-button" class="table-button round" title="Remove data row" disabled="true" onclick="dataTable.removeRow()"><svg class="table-button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></button>
+                            <button id="randomize-button" class="table-button capsule" title="Randomize data" onclick="dataTable.randomizeValues()">RANDOMIZE</button>
+                        </div>
+                        <div id="info" class="info hidden">
+                            <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                            <p class="info-label">To edit the shape, activation functions or training data,<br>please reset the network.</p>
+                        </div>
+                        <div id="warning" class="warning hidden">
+                            <svg class="warning-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+                            <p class="warning-label">Please only use values in the interval [-1, 1]. Output values<br>must be ≥ 0 for output activations Sigmoid and ReLU.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div>
+                        <h2 class="center">Network</h2>
+                        <svg id="sketch" class="sketch" viewBox="0 0 910 910"></svg>
+                    </div>
+                </div>
+                <div class="column">
+                    <div>
+                        <h2 class="center">How it works</h2>
+                        <div class="about">
+                            <p class="about-section">
+                                The neural network consists of three layers, one input, one hidden and one output layer. Each of these layers contains multiple neurons.
+                                All neurons of in a layer are connected to all neurons in the following layer. Every connection has a weight that determines its importance.
+                                You can find a schematic sketch of a neuron <a class="about-link" href="https://github.com/jmaen/nnvisualized-graphics/blob/master/neuron.pdf" target="_blank" rel="noopener noreferrer">here</a>.
+                            </p>
+                            <p class="about-section">
+                                A hidden or output neuron sums up all incoming connections and applies an activation function to the sum in order to make the network non-linear.
+                                There are many different activation functions but you can find a plot with some of the most prominent ones <a class="about-link" href="https://github.com/jmaen/nnvisualized-graphics/blob/master/activations.pdf" target="_blank" rel="noopener noreferrer">here</a>.
+                            </p>
+                            <p class="about-section">
+                                In order to learn, the network has to be trained on specific data. 
+                                It recieves input and target values and then computes the error, meaning the difference between the actual output and the target values.
+                                After that the network adjusts its weights in order to minimize this error. The algorithm used to compute the new weights is called backpropagation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="reset-button" class="side-button" title="Reset network" onclick="showResetModal()"><svg class="side-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,5V1L7,6l5,5V7c3.31,0,6,2.69,6,6s-2.69,6-6,6s-6-2.69-6-6H4c0,4.42,3.58,8,8,8s8-3.58,8-8S16.42,5,12,5z"/></svg></button>
+                <button id="train-button" class="center-button" title="Train / Pause" onclick="toggle()"><svg class="center-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path id="center-icon-path" d="M8 5v14l11-7z"/></svg></button>
+                <button id="step-button" class="side-button" title="Step" onclick="step()"><svg class="side-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+            </div>
+        </main>
+        <div id="modal" class="modal">
+            <div class="modal-box">
+                <div>
+                    <p class="modal-header">Reset the network?</p>
+                    <p class="modal-text">Do you want to reset the network? All training progress will be lost.</p>
+                    <div class="modal-buttons">
+                        <button class="modal-button red" onclick="hideResetModal(); reset()">Reset</button>
+                        <button class="modal-button gray" onclick="hideResetModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$']]
+              }
+            };
+        </script>
+        <script type=text/javascript src="js/nn.js"></script>
+        <script type=text/javascript src="js/utils.js"></script>
+        <script type=text/javascript src="js/main.js"></script>
+    </body>
+</html>
