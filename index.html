@@ -6,8 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>A Neural Network Visualized</title>
-        <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
-        <link rel="icon" sizes="any" href="icons/favicon.ico">
+        <link rel="icon" type="image/svg+xml" href="favicon.svg">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,500,700">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" type="text/css" href="main.css">
@@ -139,16 +138,19 @@
                             <p class="about-section">
                                 The neural network consists of three layers, one input, one hidden and one output layer. Each of these layers contains multiple neurons.
                                 All neurons of in a layer are connected to all neurons in the following layer. Every connection has a weight that determines its importance.
-                                You can find a schematic sketch of a neuron <a class="about-link" href="https://github.com/jmaen/nnvisualized-graphics/blob/master/neuron.pdf" target="_blank" rel="noopener noreferrer">here</a>.
+                                You can find a schematic sketch of a neuron 
+                                <a class="about-link" href="https://github.com/jmaen/nnvisualized-graphics/blob/master/neuron.pdf" target="_blank" rel="noopener noreferrer">here</a>.
                             </p>
                             <p class="about-section">
                                 A hidden or output neuron sums up all incoming connections and applies an activation function to the sum in order to make the network non-linear.
-                                There are many different activation functions but you can find a plot with some of the most prominent ones <a class="about-link" href="https://github.com/jmaen/nnvisualized-graphics/blob/master/activations.pdf" target="_blank" rel="noopener noreferrer">here</a>.
+                                There are many different activation functions but you can find a plot with the ones used in this project 
+                                <a class="about-link" href="https://github.com/jmaen/nnvisualized-graphics/blob/master/activations.pdf" target="_blank" rel="noopener noreferrer">here</a>.
                             </p>
                             <p class="about-section">
                                 In order to learn, the network has to be trained on specific data. 
-                                It recieves input and target values and then computes the error, meaning the difference between the actual output and the target values.
-                                After that the network adjusts its weights in order to minimize this error. The algorithm used to compute the new weights is called backpropagation.
+                                It recieves input and target values and then computes the error, i.e. the difference between the actual output and the target values.
+                                To adjust the weights and thus minimize the error, the error has to be calculated for each neuron. 
+                                The algorithm used to track these errors through the hidden layers is called backpropagation.
                             </p>
                         </div>
                     </div>
